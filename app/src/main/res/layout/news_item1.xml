@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/news1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guide1"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.6"/>
+
+    <ImageView android:id="@+id/news_title_pic1"
+               android:layout_width="0dp"
+               android:layout_height="0dp"
+               android:layout_marginEnd="16dp"
+               android:layout_marginStart="8dp"
+               android:layout_marginTop="8dp"
+               android:contentDescription="@string/news_from"
+               android:src="@drawable/jay"
+               app:layout_constraintDimensionRatio="4:3"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toEndOf="@id/guide1"
+               app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView android:id="@+id/news_title1"
+              style="@style/TitleStyle"
+              android:layout_marginEnd="8dp"
+              android:maxLines="3"
+              app:layout_constraintEnd_toEndOf="@id/guide1"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="@id/news_title_pic1"/>
+
+    <TextView android:id="@+id/new_from1"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="@string/news_from"
+              android:textSize="12sp"
+              app:layout_constraintBottom_toBottomOf="@id/news_title_pic1"
+              app:layout_constraintStart_toStartOf="@id/news_title1"/>
+
+    <TextView android:id="@+id/news_author1"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="2dp"
+              android:text="新华社"
+              android:textSize="12sp"
+              app:layout_constraintBottom_toBottomOf="@id/news_title_pic1"
+              app:layout_constraintStart_toEndOf="@id/new_from1"/>
+
+    <TextView android:id="@+id/news_date1"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="4dp"
+              android:text="2017-09-05 15:59"
+              android:textSize="12sp"
+              app:layout_constraintBottom_toBottomOf="@id/news_title_pic1"
+              app:layout_constraintEnd_toEndOf="@id/news_title1"/>
+
+</android.support.constraint.ConstraintLayout>
