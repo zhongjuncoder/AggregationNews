@@ -20,7 +20,7 @@ import com.juncoder.aggregationnews.R;
  * thumbnail_pic_s02 :
  * thumbnail_pic_s03 :
  */
-public class News implements MultiItemEntity,Parcelable {
+public class News implements MultiItemEntity, Parcelable {
 
     private String uniquekey;
     private String title;

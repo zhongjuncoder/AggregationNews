@@ -10,12 +10,12 @@ import com.bumptech.glide.Glide;
  * email:1247660633@qq.com
  */
 
-public class PictureUtils {
+public class ImageUtils {
 
     public static void showPic(Context context, String url, ImageView imageView) {
-        Glide.with(context)
-                .asBitmap()
+        Glide.with(context.getApplicationContext())
                 .load(url)
+                .thumbnail(0.5f)
                 .into(imageView);
     }
 }

@@ -5,7 +5,8 @@
     android:id="@+id/news1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp">
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/touch_ripple">
 
     <android.support.constraint.Guideline
         android:id="@+id/guide1"
@@ -47,7 +48,7 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_marginStart="2dp"
-              android:text="新华社"
+              android:text="@string/author"
               android:textSize="12sp"
               app:layout_constraintBottom_toBottomOf="@id/news_title_pic1"
               app:layout_constraintStart_toEndOf="@id/new_from1"/>
@@ -56,7 +57,7 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_marginTop="4dp"
-              android:text="2017-09-05 15:59"
+              android:text="@string/date"
               android:textSize="12sp"
               app:layout_constraintBottom_toBottomOf="@id/news_title_pic1"
               app:layout_constraintEnd_toEndOf="@id/news_title1"/>

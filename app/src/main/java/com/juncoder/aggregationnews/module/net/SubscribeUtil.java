@@ -5,10 +5,13 @@ import android.util.Log;
 
 import com.juncoder.aggregationnews.callback.ResultCallback;
 import com.juncoder.aggregationnews.module.bean.BaseResult;
+import com.juncoder.aggregationnews.module.bean.Joke;
+import com.juncoder.aggregationnews.module.bean.MeiZi;
 import com.juncoder.aggregationnews.utils.NetworkUtils;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
+import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -37,7 +40,7 @@ public class SubscribeUtil {
         mCompositeDisposable = new CompositeDisposable();
     }
 
-    public <T, D extends BaseResult<T>> void subscribe(Observable<D> observable, final ResultCallback<T> callback) {
+    public <T, D extends BaseResult<T>> void subscribe(Observable<D> observable, final ResultCallback<List<T>> callback) {
 
         if (NetworkUtils.isAvailable(mContext)) {
             observable.subscribeOn(Schedulers.io())
@@ -53,7 +56,7 @@ public class SubscribeUtil {
                             if (d.getResult().getStat().equals("1")) {
                                 callback.onSuccess(d.getResult().getData());
                             } else {
-                                transferErrorCode(d.getResult().getStat(), callback);
+                                callback.onFail(d.getReason());
                             }
                         }
 
@@ -67,7 +70,7 @@ public class SubscribeUtil {
                                 callback.onFail("连接超时，请重试");
                             } else if (e instanceof HttpException) {
                                 Log.d(TAG, "onError: HttpException");
-                                callback.onFail("请求异常，请重新登录");
+                                callback.onFail("请求异常，请重试");
                             } else if (e instanceof RuntimeException) {
                                 Log.d(TAG, "onError: RuntimeException");
                                 callback.onFail("运行错误，请重试");
@@ -89,6 +92,76 @@ public class SubscribeUtil {
             callback.onFail("网络不可用!请检查网络设置");
         }
 
+    }
+
+    public void jokeSubscribe(Observable<Joke> observable, final ResultCallback<Joke> callback) {
+        if (NetworkUtils.isAvailable(mContext)) {
+            observable.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Observer<Joke>() {
+                        @Override
+                        public void onSubscribe(@NonNull Disposable d) {
+                            mCompositeDisposable.add(d);
+                        }
+
+                        @Override
+                        public void onNext(@NonNull Joke joke) {
+                            if (joke.getError_code() == 0) {
+                                callback.onSuccess(joke);
+                            } else {
+                                callback.onFail(joke.getReason());
+                            }
+                        }
+
+                        @Override
+                        public void onError(@NonNull Throwable e) {
+                            callback.onFail("请求异常，请稍后再试");
+                            e.printStackTrace();
+                        }
+
+                        @Override
+                        public void onComplete() {
+
+                        }
+                    });
+        } else {
+            callback.onFail("网络不可用!请检查网络设置");
+        }
+    }
+
+    public void meiziSubscribe(Observable<MeiZi> observable, final ResultCallback<MeiZi> callback) {
+        if (NetworkUtils.isAvailable(mContext)) {
+            observable.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Observer<MeiZi>() {
+                        @Override
+                        public void onSubscribe(@NonNull Disposable d) {
+                            mCompositeDisposable.add(d);
+                        }
+
+                        @Override
+                        public void onNext(@NonNull MeiZi meizi) {
+                            if (!meizi.isError()) {
+                                callback.onSuccess(meizi);
+                            } else {
+                                callback.onFail("请求异常，请稍后再试");
+                            }
+                        }
+
+                        @Override
+                        public void onError(@NonNull Throwable e) {
+                            callback.onFail("请求异常，请稍后再试");
+                            e.printStackTrace();
+                        }
+
+                        @Override
+                        public void onComplete() {
+
+                        }
+                    });
+        } else {
+            callback.onFail("网络不可用!请检查网络设置");
+        }
     }
 
     private <T> void transferErrorCode(String code, ResultCallback<T> callback) {

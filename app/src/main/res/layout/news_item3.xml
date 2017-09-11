@@ -5,13 +5,14 @@
     android:id="@+id/news3"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp">
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/touch_ripple">
 
     <TextView android:id="@+id/news_title3"
               style="@style/TitleStyle"
               android:layout_marginEnd="16dp"
               android:layout_marginTop="8dp"
-              android:text="该怎么逃开，我控制不来，我掉进爱情悬崖.失去了等待，让爱没了自然"
+              android:text="@string/news_title"
               app:layout_constraintEnd_toEndOf="parent"
               app:layout_constraintStart_toStartOf="parent"
               app:layout_constraintTop_toTopOf="parent"/>
@@ -30,7 +31,7 @@
               android:layout_height="wrap_content"
               android:layout_marginStart="2dp"
               android:layout_marginTop="8dp"
-              android:text="新华社"
+              android:text="@string/author"
               android:textSize="12sp"
               app:layout_constraintStart_toEndOf="@id/new_from3"
               app:layout_constraintTop_toBottomOf="@id/news_title3"/>
@@ -39,7 +40,7 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_marginTop="8dp"
-              android:text="2017-09-05 15:59"
+              android:text="@string/date"
               android:textSize="@dimen/sp_12"
               app:layout_constraintEnd_toEndOf="@id/news_title3"
               app:layout_constraintTop_toBottomOf="@id/news_title3"/>

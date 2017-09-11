@@ -1,4 +1,4 @@
-package com.juncoder.aggregationnews.news_destail;
+package com.juncoder.aggregationnews.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -25,7 +25,7 @@ public class NewsDetailActivity extends AppCompatActivity {
         setContentView(R.layout.news_detail_layout);
         String url = getIntent().getStringExtra("url");
 
-        mWebView = findViewById(R.id.news_webview);
+        mWebView = (WebView) findViewById(R.id.news_webview);
         mWebView.setWebViewClient(new WebViewClient());
         mWebView.loadUrl(url);
 

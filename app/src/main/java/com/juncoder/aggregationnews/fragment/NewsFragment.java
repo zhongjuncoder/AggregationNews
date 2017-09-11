@@ -1,13 +1,15 @@
-package com.juncoder.aggregationnews.home_news;
+package com.juncoder.aggregationnews.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.util.SparseArray;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.juncoder.aggregationnews.R;
 import com.juncoder.aggregationnews.module.bean.Type;
@@ -15,29 +17,27 @@ import com.juncoder.aggregationnews.module.bean.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class NewsFragment extends Fragment {
 
     private List<Type> mTypeList;
 
-    private SparseArray<HomeNewsContact.HomeNewsPresenter> mPresenters;
-
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.news_fragment_layout, container, false);
         initData();
 
-        ViewPager viewPager = findViewById(R.id.home_view_pager);
-        HomeNewsFragmentAdapter adapter = new HomeNewsFragmentAdapter(getSupportFragmentManager());
+        ViewPager viewPager = view.findViewById(R.id.news_view_pager);
+        HomeNewsFragmentAdapter adapter = new HomeNewsFragmentAdapter(getChildFragmentManager());
         viewPager.setAdapter(adapter);
 
-        TabLayout tabLayout = findViewById(R.id.home_tab_layout);
+        TabLayout tabLayout = view.findViewById(R.id.top_tab_layout);
         tabLayout.setupWithViewPager(viewPager);
+        return view;
     }
 
-    private void initData() {
-        mPresenters = new SparseArray<>();
 
+    private void initData() {
         mTypeList = new ArrayList<>();
         mTypeList.add(new Type("top", "头条"));
         mTypeList.add(new Type("shehui", "社会"));
@@ -58,13 +58,7 @@ public class MainActivity extends AppCompatActivity {
         //每次获取的时候都是new一个fragment，里面的presenter没有保存，所以需要重新设置
         @Override
         public Fragment getItem(int position) {
-            HomeNewsFragment homeNewsFragment = HomeNewsFragment.getInstance(mTypeList.get(position).getEnglishType());
-            if (mPresenters.get(position) == null) {
-                mPresenters.put(position, new HomeNewsPresenter(homeNewsFragment, MainActivity.this));
-            }
-            mPresenters.get(position).setView(homeNewsFragment);
-            homeNewsFragment.setPresenter(mPresenters.get(position));
-            return homeNewsFragment;
+            return NewsListFragment.getInstance(mTypeList.get(position).getEnglishType());
         }
 
         @Override

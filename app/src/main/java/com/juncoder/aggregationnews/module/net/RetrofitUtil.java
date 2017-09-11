@@ -12,20 +12,22 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitUtil {
 
-    private static final String BASE_URL = "http://v.juhe.cn/toutiao/";
+    public static final String News_BASE_URL = "http://v.juhe.cn/";
+
+    public static final String JOKE_BASE_URL = "http://japi.juhe.cn/";
+
+    public static final String MEIZI_BASE_URL = "http://gank.io/api/data/";
 
     private static final OkHttpClient OK_HTTP_CLIENT = new OkHttpClient.Builder()
             .build();
 
-    private static final Retrofit RETROFIT = new Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(OK_HTTP_CLIENT)
-            .build();
-
-    public static <T> T create(Class<T> tClass) {
-        return RETROFIT.create(tClass);
+    public static <T> T create(String baseUrl, Class<T> tClass) {
+        return new Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(OK_HTTP_CLIENT)
+                .build().create(tClass);
     }
 
 }
