@@ -4,6 +4,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 
 import com.github.chrisbanes.photoview.PhotoView;
@@ -11,7 +12,7 @@ import com.juncoder.aggregationnews.R;
 import com.juncoder.aggregationnews.utils.ImageUtils;
 
 /**
- * Created by zhongjun on 2017/9/13/013.
+ * Created by 3zhongjun on 2017/9/13/013.
  * email:1247660633@qq.com
  */
 public class ImageActivity extends AppCompatActivity {
@@ -38,4 +39,14 @@ public class ImageActivity extends AppCompatActivity {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
         }
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
 }
