@@ -36,5 +36,11 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.2.0'
     compile 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
     compile 'com.github.bumptech.glide:glide:4.1.1'
-    compile 'me.xiaopan:sketch:2.5.0-p1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.1.1'
+    compile ("com.github.bumptech.glide:recyclerview-integration:4.1.1") {
+        // Excludes the support library because it's already included by Glide.
+        transitive = false
+    }
+    compile 'com.github.chrisbanes:PhotoView:2.1.3'
 }
+

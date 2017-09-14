@@ -1,8 +1,11 @@
 package com.juncoder.aggregationnews.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
@@ -15,13 +18,11 @@ import android.widget.ImageView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.juncoder.aggregationnews.R;
+import com.juncoder.aggregationnews.activity.ImageActivity;
 import com.juncoder.aggregationnews.callback.ResultCallback;
 import com.juncoder.aggregationnews.module.bean.MeiZi;
 import com.juncoder.aggregationnews.module.module_impl.MeiZiModule;
 import com.juncoder.aggregationnews.utils.ImageUtils;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by zhongjuncoder on 2017/9/11.
@@ -38,14 +39,11 @@ public class MeiZiFragment extends Fragment {
 
     private MeiZiAdapter mAdapter;
 
-    private List<MeiZi.ResultsBean> mBeans;
-
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.recycler_layout, container, false);
         mModule = new MeiZiModule(getActivity());
-        mBeans = new ArrayList<>();
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
 
@@ -57,6 +55,15 @@ public class MeiZiFragment extends Fragment {
                 getMeiZi();
             }
         }, recyclerView);
+        mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                Intent intent = new Intent(getActivity(), ImageActivity.class);
+                intent.putExtra("url", mAdapter.getItem(position).getUrl());
+                ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), view, "meizi");
+                ActivityCompat.startActivity(getActivity(), intent, optionsCompat.toBundle());
+            }
+        });
         recyclerView.setAdapter(mAdapter);
 
         mRefreshLayout = view.findViewById(R.id.refresh_view);
@@ -76,13 +83,9 @@ public class MeiZiFragment extends Fragment {
     }
 
     private void getMeiZi() {
-        mModule.getMeiZi(20, mPage++, new ResultCallback<MeiZi>() {
+        mModule.getMeiZi(10, mPage++, new ResultCallback<MeiZi>() {
             @Override
             public void onSuccess(MeiZi meiZi) {
-                for (int i = 0, size = meiZi.getResults().size(); i < size; i++) {
-                    meiZi.getResults().get(i).setUsed(false);
-                }
-                mBeans.addAll(meiZi.getResults());
                 if (mAdapter.getData().isEmpty()) {
                     mAdapter.setNewData(meiZi.getResults());
                 } else {
@@ -115,34 +118,6 @@ public class MeiZiFragment extends Fragment {
         mModule.dispose();
     }
 
-    private class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
-
-        @Override
-        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new ViewHolder(LayoutInflater.from(getActivity()).inflate(R.layout.meizi_item, parent, false));
-        }
-
-        @Override
-        public void onBindViewHolder(ViewHolder holder, int position) {
-            ImageUtils.showPic(getActivity(), mBeans.get(position).getUrl(), holder.mImageView);
-        }
-
-        @Override
-        public int getItemCount() {
-            return mBeans.size();
-        }
-
-        class ViewHolder extends RecyclerView.ViewHolder {
-
-            private ImageView mImageView;
-
-            ViewHolder(View itemView) {
-                super(itemView);
-                mImageView = itemView.findViewById(R.id.meizi_pic);
-            }
-        }
-    }
-
     private class MeiZiAdapter extends BaseQuickAdapter<MeiZi.ResultsBean, BaseViewHolder> {
 
         MeiZiAdapter(@LayoutRes int layoutResId) {
@@ -151,33 +126,8 @@ public class MeiZiFragment extends Fragment {
 
         @Override
         protected void convert(final BaseViewHolder helper, final MeiZi.ResultsBean item) {
-            if (!item.isUsed()) {
-                ImageUtils.showPic(getActivity(), item.getUrl(), (ImageView) helper.getView(R.id.meizi_pic));
-                item.setUsed(true);
-            } else {
-                item.setUsed(false);
-            } 
-            /*Glide.with(getActivity().getApplicationContext())
-                    .load(item.getUrl())
-                    .thumbnail(0.5f)
-                    .into(new ImageViewTarget<Drawable>((ImageView) helper.getView(R.id.meizi_pic)) {
-                        @Override
-                        protected void setResource(@Nullable Drawable resource) {
-                            helper.setImageDrawable(R.id.meizi_pic, resource);
-                        }
-
-                        @Override
-                        public void setRequest(@Nullable Request request) {
-                            super.setRequest(request);
-                            helper.getView(R.id.meizi_pic).setTag(R.id.image_tag,request);
-                        }
-
-                        @Nullable
-                        @Override
-                        public Request getRequest() {
-                            return (Request) helper.getView(R.id.meizi_pic).getTag();
-                        }
-                    });*/
+            ImageUtils.showPic(MeiZiFragment.this, item.getUrl(), (ImageView) helper.getView(R.id.meizi_pic));
+            helper.addOnClickListener(R.id.meizi_pic);
         }
 
     }

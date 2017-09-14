@@ -8,8 +8,10 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -44,12 +46,6 @@ public class JokeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mAdapter = new JokeAdapter(R.layout.joke_item);
         mAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
-        mAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
-            @Override
-            public void onLoadMoreRequested() {
-                getJoke();
-            }
-        }, recyclerView);
         recyclerView.setAdapter(mAdapter);
 
         mRefreshLayout = view.findViewById(R.id.refresh_view);

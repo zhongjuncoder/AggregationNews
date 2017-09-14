@@ -166,24 +166,24 @@ public class NewsListFragment extends Fragment {
                             .setText(R.id.news_author1, item.getAuthor_name())
                             .setText(R.id.news_date1, item.getDate().split(" ")[1])
                             .addOnClickListener(R.id.news1);
-                    ImageUtils.showPic(getActivity(), item.getThumbnail_pic_s(), (ImageView) helper.getView(R.id.news_title_pic1));
+                    ImageUtils.showPic(NewsListFragment.this, item.getThumbnail_pic_s(), (ImageView) helper.getView(R.id.news_title_pic1));
                     break;
                 case R.layout.news_item2:
                     helper.setText(R.id.news_title2, item.getTitle())
                             .setText(R.id.news_author2, item.getAuthor_name())
                             .setText(R.id.news_date2, item.getDate())
                             .addOnClickListener(R.id.news2);
-                    ImageUtils.showPic(getActivity(), item.getThumbnail_pic_s(), (ImageView) helper.getView(R.id.news_title_pic2_one));
-                    ImageUtils.showPic(getActivity(), item.getThumbnail_pic_s02(), (ImageView) helper.getView(R.id.news_title_pic2_two));
+                    ImageUtils.showPic(NewsListFragment.this, item.getThumbnail_pic_s(), (ImageView) helper.getView(R.id.news_title_pic2_one));
+                    ImageUtils.showPic(NewsListFragment.this, item.getThumbnail_pic_s02(), (ImageView) helper.getView(R.id.news_title_pic2_two));
                     break;
                 case R.layout.news_item3:
                     helper.setText(R.id.news_title3, item.getTitle())
                             .setText(R.id.news_author3, item.getAuthor_name())
                             .setText(R.id.news_date3, item.getDate())
                             .addOnClickListener(R.id.news3);
-                    ImageUtils.showPic(getActivity(), item.getThumbnail_pic_s(), (ImageView) helper.getView(R.id.news_title_pic3_one));
-                    ImageUtils.showPic(getActivity(), item.getThumbnail_pic_s02(), (ImageView) helper.getView(R.id.news_title_pic3_two));
-                    ImageUtils.showPic(getActivity(), item.getThumbnail_pic_s03(), (ImageView) helper.getView(R.id.news_title_pic3_three));
+                    ImageUtils.showPic(NewsListFragment.this, item.getThumbnail_pic_s(), (ImageView) helper.getView(R.id.news_title_pic3_one));
+                    ImageUtils.showPic(NewsListFragment.this, item.getThumbnail_pic_s02(), (ImageView) helper.getView(R.id.news_title_pic3_two));
+                    ImageUtils.showPic(NewsListFragment.this, item.getThumbnail_pic_s03(), (ImageView) helper.getView(R.id.news_title_pic3_three));
                     break;
                 default:
                     break;

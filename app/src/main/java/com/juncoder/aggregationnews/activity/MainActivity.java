@@ -77,7 +77,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initTab() {
-        for (int i = 0; i < 3; i++) {
+        TextView firstView = (TextView) LayoutInflater.from(this).inflate(R.layout.bottom_tab_item, null);
+        firstView.setText(mTabResources[0][0]);
+        firstView.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.colorPrimary));
+        firstView.setCompoundDrawablesRelativeWithIntrinsicBounds(0, Integer.valueOf(mTabResources[0][1]), 0, 0);
+        firstView.getCompoundDrawables()[1].setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
+        mTabLayout.getTabAt(0).setCustomView(firstView);
+        mTextViews[0] = firstView;
+
+        for (int i = 1; i < 3; i++) {
             TextView textView = (TextView) LayoutInflater.from(this).inflate(R.layout.bottom_tab_item, null);
             textView.setText(mTabResources[i][0]);
             textView.setCompoundDrawablesRelativeWithIntrinsicBounds(0, Integer.valueOf(mTabResources[i][1]), 0, 0);
@@ -85,9 +93,6 @@ public class MainActivity extends AppCompatActivity {
             mTextViews[i] = textView;
         }
 
-        TextView textView = mTextViews[0];
-        textView.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.colorPrimary));
-        textView.getCompoundDrawables()[1].setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
     }
 
     private class HomeFragmentAdapter extends FragmentPagerAdapter {

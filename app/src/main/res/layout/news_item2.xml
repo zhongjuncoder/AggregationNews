@@ -1,81 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/news2"
-    android:background="@drawable/touch_ripple"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp">
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/touch_ripple">
 
-    <TextView android:id="@+id/news_title2"
-              style="@style/TitleStyle"
-              android:layout_marginEnd="16dp"
-              android:layout_marginTop="8dp"
-              android:text="@string/news_title"
-              app:layout_constraintEnd_toEndOf="parent"
-              app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:id="@+id/news_title2"
+        style="@style/TitleStyle"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/news_title"
+        android:textIsSelectable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView android:id="@+id/new_from2"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="8dp"
-              android:text="@string/news_from"
-              android:textSize="12sp"
-              app:layout_constraintStart_toStartOf="@id/news_title2"
-              app:layout_constraintTop_toBottomOf="@id/news_title2"/>
+    <TextView
+        android:id="@+id/new_from2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/news_from"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@id/news_title2"
+        app:layout_constraintTop_toBottomOf="@id/news_title2" />
 
-    <TextView android:id="@+id/news_author2"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginStart="2dp"
-              android:layout_marginTop="8dp"
-              android:text="@string/author"
-              android:textSize="12sp"
-              app:layout_constraintStart_toEndOf="@id/new_from2"
-              app:layout_constraintTop_toBottomOf="@id/news_title2"/>
+    <TextView
+        android:id="@+id/news_author2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/author"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@id/new_from2"
+        app:layout_constraintTop_toBottomOf="@id/news_title2" />
 
-    <TextView android:id="@+id/news_date2"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="8dp"
-              android:text="@string/date"
-              android:textSize="@dimen/sp_12"
-              app:layout_constraintEnd_toEndOf="@id/news_title2"
-              app:layout_constraintTop_toBottomOf="@id/news_title2"/>
+    <TextView
+        android:id="@+id/news_date2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/date"
+        android:textSize="@dimen/sp_12"
+        app:layout_constraintEnd_toEndOf="@id/news_title2"
+        app:layout_constraintTop_toBottomOf="@id/news_title2" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guide2"
         android:layout_width="1dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5"/>
+        app:layout_constraintGuide_percent="0.5" />
 
-    <ImageView android:id="@+id/news_title_pic2_one"
-               android:layout_width="0dp"
-               android:layout_height="0dp"
-               android:layout_marginEnd="4dp"
-               android:layout_marginStart="16dp"
-               android:layout_marginTop="8dp"
-               android:contentDescription="@string/picture"
-               android:scaleType="centerCrop"
-               app:layout_constraintDimensionRatio="3:2"
-               app:layout_constraintEnd_toStartOf="@id/guide2"
-               app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toBottomOf="@id/new_from2"/>
+    <ImageView
+        android:id="@+id/news_title_pic2_one"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/picture"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="3:2"
+        app:layout_constraintEnd_toStartOf="@id/guide2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/new_from2" />
 
-    <ImageView android:id="@+id/news_title_pic2_two"
-               android:layout_width="0dp"
-               android:layout_height="0dp"
-               android:layout_marginEnd="16dp"
-               android:layout_marginStart="4dp"
-               android:layout_marginTop="8dp"
-               android:contentDescription="@string/picture"
-               android:scaleType="centerCrop"
-               app:layout_constraintBottom_toBottomOf="@+id/news_title_pic2_one"
-               app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintStart_toStartOf="@id/guide2"
-               app:layout_constraintTop_toBottomOf="@id/new_from2"/>
+    <ImageView
+        android:id="@+id/news_title_pic2_two"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/picture"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@+id/news_title_pic2_one"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guide2"
+        app:layout_constraintTop_toBottomOf="@id/new_from2" />
 
 </android.support.constraint.ConstraintLayout>
