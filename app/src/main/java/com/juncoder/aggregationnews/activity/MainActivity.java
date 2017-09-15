@@ -31,8 +31,6 @@ public class MainActivity extends AppCompatActivity {
             {"笑话", String.valueOf(R.drawable.ic_joke)},
             {"美图", String.valueOf(R.drawable.ic_meitu)}};
 
-    private TextView[] mTextViews = new TextView[3];
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +45,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 title.setText(mTabResources[tab.getPosition()][0]);
-                TextView textView = mTextViews[tab.getPosition()];
+                TextView textView = (TextView) tab.getCustomView();
+                assert textView != null;
                 textView.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.colorPrimary));
                 textView.getCompoundDrawables()[1].setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
             }
@@ -55,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
                 title.setText(mTabResources[tab.getPosition()][0]);
-                TextView textView = mTextViews[tab.getPosition()];
+                TextView textView = (TextView) tab.getCustomView();
+                assert textView != null;
                 textView.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.colorGrey));
                 textView.getCompoundDrawables()[1].setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.colorGrey), PorterDuff.Mode.SRC_IN);
             }
@@ -81,14 +81,12 @@ public class MainActivity extends AppCompatActivity {
         firstView.setCompoundDrawablesRelativeWithIntrinsicBounds(0, Integer.valueOf(mTabResources[0][1]), 0, 0);
         firstView.getCompoundDrawables()[1].setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
         mTabLayout.getTabAt(0).setCustomView(firstView);
-        mTextViews[0] = firstView;
 
         for (int i = 1; i < 3; i++) {
             TextView textView = (TextView) LayoutInflater.from(this).inflate(R.layout.bottom_tab_item, null);
             textView.setText(mTabResources[i][0]);
             textView.setCompoundDrawablesRelativeWithIntrinsicBounds(0, Integer.valueOf(mTabResources[i][1]), 0, 0);
             mTabLayout.getTabAt(i).setCustomView(textView);
-            mTextViews[i] = textView;
         }
 
     }
