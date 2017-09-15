@@ -10,7 +10,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.widget.TextView;
 
@@ -38,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.home_toolbar);
         final TextView title = (TextView) findViewById(R.id.toolbar_title);
         ViewPager viewPager = (ViewPager) findViewById(R.id.home_view_pager);
         viewPager.setAdapter(new HomeFragmentAdapter(getSupportFragmentManager()));
