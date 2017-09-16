@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/news3"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp"
-    android:background="@drawable/touch_ripple">
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             android:id="@+id/news3"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="wrap_content"
+                                             android:layout_marginBottom="8dp"
+                                             android:background="@drawable/touch_ripple">
 
     <TextView
         android:id="@+id/news_title3"
@@ -13,10 +13,9 @@
         android:layout_marginEnd="16dp"
         android:layout_marginTop="8dp"
         android:text="@string/news_title"
-        android:textIsSelectable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/new_from3"
@@ -26,7 +25,7 @@
         android:text="@string/news_from"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@id/news_title3"
-        app:layout_constraintTop_toBottomOf="@id/news_title3" />
+        app:layout_constraintTop_toBottomOf="@id/news_title3"/>
 
     <TextView
         android:id="@+id/news_author3"
@@ -37,7 +36,7 @@
         android:text="@string/author"
         android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@id/new_from3"
-        app:layout_constraintTop_toBottomOf="@id/news_title3" />
+        app:layout_constraintTop_toBottomOf="@id/news_title3"/>
 
     <TextView
         android:id="@+id/news_date3"
@@ -47,21 +46,21 @@
         android:text="@string/date"
         android:textSize="@dimen/sp_12"
         app:layout_constraintEnd_toEndOf="@id/news_title3"
-        app:layout_constraintTop_toBottomOf="@id/news_title3" />
+        app:layout_constraintTop_toBottomOf="@id/news_title3"/>
 
     <android.support.constraint.Guideline
         android:id="@+id/guide3"
         android:layout_width="1dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.35" />
+        app:layout_constraintGuide_percent="0.35"/>
 
     <android.support.constraint.Guideline
         android:id="@+id/guide4"
         android:layout_width="1dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.65" />
+        app:layout_constraintGuide_percent="0.65"/>
 
     <ImageView
         android:id="@+id/news_title_pic3_one"
@@ -72,11 +71,10 @@
         android:layout_marginTop="8dp"
         android:contentDescription="@string/picture"
         android:scaleType="centerCrop"
-        android:src="@drawable/jay"
         app:layout_constraintDimensionRatio="3:2"
         app:layout_constraintEnd_toStartOf="@id/guide3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/new_from3" />
+        app:layout_constraintTop_toBottomOf="@id/new_from3"/>
 
     <ImageView
         android:id="@+id/news_title_pic3_two"
@@ -85,11 +83,10 @@
         android:layout_marginTop="8dp"
         android:contentDescription="@string/picture"
         android:scaleType="centerCrop"
-        android:src="@drawable/jay"
         app:layout_constraintBottom_toBottomOf="@+id/news_title_pic3_one"
         app:layout_constraintEnd_toStartOf="@id/guide4"
         app:layout_constraintStart_toStartOf="@id/guide3"
-        app:layout_constraintTop_toBottomOf="@id/new_from3" />
+        app:layout_constraintTop_toBottomOf="@id/new_from3"/>
 
     <ImageView
         android:id="@+id/news_title_pic3_three"
@@ -100,10 +97,9 @@
         android:layout_marginTop="8dp"
         android:contentDescription="@string/picture"
         android:scaleType="centerCrop"
-        android:src="@drawable/jay"
         app:layout_constraintBottom_toBottomOf="@+id/news_title_pic3_one"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/guide4"
-        app:layout_constraintTop_toBottomOf="@id/new_from3" />
+        app:layout_constraintTop_toBottomOf="@id/new_from3"/>
 
 </android.support.constraint.ConstraintLayout>
