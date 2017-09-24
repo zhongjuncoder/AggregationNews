@@ -73,6 +73,7 @@ public class MeiZiFragment extends Fragment {
             public void onRefresh() {
                 mPage = 1;
                 mAdapter.getData().clear();
+                mAdapter.notifyDataSetChanged();
                 getMeiZi();
             }
         });
