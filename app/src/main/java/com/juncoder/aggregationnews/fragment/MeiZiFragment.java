@@ -60,7 +60,7 @@ public class MeiZiFragment extends Fragment {
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 Intent intent = new Intent(getActivity(), ImageActivity.class);
                 intent.putExtra("url", mAdapter.getItem(position).getUrl());
-                ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), view, "meizi");
+                ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), adapter.getViewByPosition(position, R.id.meizi_pic), "meizi");
                 ActivityCompat.startActivity(getActivity(), intent, optionsCompat.toBundle());
             }
         });

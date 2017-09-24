@@ -20,12 +20,12 @@ public class NetworkUtils {
         throw new UnsupportedOperationException("u can't fuck me...");
     }
 
-    public static final int NETWORK_WIFI = 1;    // wifi network
-    public static final int NETWORK_4G = 4;    // "4G" networks
-    public static final int NETWORK_3G = 3;    // "3G" networks
-    public static final int NETWORK_2G = 2;    // "2G" networks
-    public static final int NETWORK_UNKNOWN = 5;    // unknown network
-    public static final int NETWORK_NO = -1;   // no network
+    private static final int NETWORK_WIFI = 1;    // wifi network
+    private static final int NETWORK_4G = 4;    // "4G" networks
+    private static final int NETWORK_3G = 3;    // "3G" networks
+    private static final int NETWORK_2G = 2;    // "2G" networks
+    private static final int NETWORK_UNKNOWN = 5;    // unknown network
+    private static final int NETWORK_NO = -1;   // no network
 
     private static final int NETWORK_TYPE_GSM = 16;
     private static final int NETWORK_TYPE_TD_SCDMA = 17;

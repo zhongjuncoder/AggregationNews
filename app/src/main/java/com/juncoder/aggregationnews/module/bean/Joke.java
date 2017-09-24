@@ -6,7 +6,7 @@ import java.util.List;
  * Created by zhongjuncoder on 2017/9/11.
  * email:1247660633@qq.com
  * <p>
- * * error_code : 0
+ * error_code : 0
  * reason : Success
  */
 

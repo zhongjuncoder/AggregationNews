@@ -1,15 +1,20 @@
 package com.juncoder.aggregationnews.activity;
 
-import android.os.Build;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.TextView;
 
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.juncoder.aggregationnews.R;
-import com.juncoder.aggregationnews.utils.ImageUtils;
+import com.juncoder.aggregationnews.fragment.GlideApp;
 
 /**
  * Created by 3zhongjun on 2017/9/13/013.
@@ -17,14 +22,34 @@ import com.juncoder.aggregationnews.utils.ImageUtils;
  */
 public class ImageActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.image_detail);
-        initStatus();
+        supportPostponeEnterTransition();
+        TextView textView = (TextView) findViewById(R.id.toolbar_title);
+        textView.setText("美图");
+
         PhotoView imageView = (PhotoView) findViewById(R.id.meizi_detail);
         String url = getIntent().getStringExtra("url");
-        ImageUtils.showPic(this, url, imageView);
+        GlideApp.with(this)
+                .load(url)
+                .dontAnimate()
+                .listener(new RequestListener<Drawable>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                        supportStartPostponedEnterTransition();
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                        supportStartPostponedEnterTransition();
+                        return false;
+                    }
+                })
+                .into(imageView);
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,16 +59,10 @@ public class ImageActivity extends AppCompatActivity {
         });
     }
 
-    private void initStatus() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
-        }
-    }
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            finish();
+            supportFinishAfterTransition();
             return true;
         }
         return super.onKeyDown(keyCode, event);
