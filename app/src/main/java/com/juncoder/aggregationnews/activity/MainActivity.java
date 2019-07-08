@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
     private TabLayout mTabLayout;
 
+    private String bugFix = "修复了bug";
+    
     private String[][] mTabResources = {{"新闻", String.valueOf(R.drawable.ic_news)},
             {"笑话", String.valueOf(R.drawable.ic_joke)},
             {"美图", String.valueOf(R.drawable.ic_meitu)}};
