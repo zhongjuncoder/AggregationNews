@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     private String test1 = "这是第一版";
 
     private String test2 = "这是第二版";
+
+    private String test3 = "这是第三版";
     
     private String[][] mTabResources = {{"新闻", String.valueOf(R.drawable.ic_news)},
             {"笑话", String.valueOf(R.drawable.ic_joke)},
